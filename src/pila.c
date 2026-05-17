@@ -15,7 +15,7 @@ Pila* crearPila(){
 }
 
 void push(Pila* p, void *dato, size_t size){
-         if (p == dato == NULL) return;
+         if (p == NULL || dato == NULL) return;
 
          nodoPila* nuevo = (nodoPila*)malloc(sizeof(nodoPila));
          if (nuevo == NULL) return;
@@ -34,7 +34,7 @@ void push(Pila* p, void *dato, size_t size){
 
 char pop(Pila* p){
          if(pilaVacia(p)){
-         return "\0"
+         return '\0';
          }
 
          nodoPila* nodoAux = p->tope;
@@ -50,7 +50,7 @@ char pop(Pila* p){
 
 char peek(Pila* p){
          if(pilaVacia(p)){
-                 return "\0";
+                 return '\0';
          }
          return *(char*)(p->tope->dato);
 }
