@@ -39,10 +39,40 @@ char dequeue(Cola* c){
       if (colaVacia(c)){
            return '\0';
       }
-      NodoCola* Nodotmp = c->frente;
+      NodoCola* tmp = c->frente;
       c->frente = c->frente->siguiente;
       if(c->frente == NULL){
            c->final== NULL;
       }
-      char valor
+      char valor = *(char*)(tmp->dato);
+      free(tmp->dato);
+      free(tmp);
+      return dato;
+}
+
+int colaVacia(Cola* c){
+      return(c->frente = NULL);
+}
+
+void imprimirCola(Cola* c){
+      if(colaVacia(c)){
+           printf("\n");
+           return;
+      }
+      NodoCola* actual = c->frente;
+      while(actual != NULL){
+           printf("%c ", *(char*)(actual->dato));
+           actual = actual->siguiente;
+      }
+      printf("\n");
+}
+
+void destruirCola(Cola* c){
+      if (c == NULL){
+           return;
+      }
+      while(!colaVacia(c)){
+           dequeue(c);
+      }
+      free(c);
 }
