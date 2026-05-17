@@ -2,3 +2,5 @@
 #include <stdlib.h>
 
 #include "../include/cola.h"
+
+cola* crear

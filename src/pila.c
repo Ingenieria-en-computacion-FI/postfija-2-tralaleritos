@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/pila.h"
+#include "pila.h"
 
 
 Pila* crearPila(){
@@ -32,30 +32,31 @@ void push(Pila* p, void *dato, size_t size){
          p->tope = nuevo;        
 }
 
-void* pop(Pila* p){
+char pop(Pila* p){
          if(pilaVacia(p)){
-         return NULL;
+                 return '\0';
          }
 
-         NodoPila* nodoAux = p->tope;
+         NodoPila* tmp = p->tope;
          p->tope = p->tope->siguiente;
 
-         void* valor= nodoAux->dato;
+         char dato= *(char*)tmp->dato;
 
-         free(nodoAux);
+         free(tmp->dato);
+         free(tmp);
 
-         return valor;
+         return dato;
 }
 
-void* peek(Pila* p){
+char peek(Pila* p){
          if(pilaVacia(p)){
                  return NULL;
          }
-         return p->tope->dato;
+         return *(char*)p->tope->dato;
 }
 
 int pilaVacia(Pila* p){
-          return (p == NULL || p->tope == NULL);
+          return (p->tope == NULL);
 }
 
 void destruirPila(Pila* p){
