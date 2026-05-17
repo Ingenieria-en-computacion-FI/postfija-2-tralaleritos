@@ -32,7 +32,7 @@ void push(Pila* p, void *dato, size_t size){
          p->tope = nuevo;        
 }
 
-char pop(Pila* p){
+void* pop(Pila* p){
          if(pilaVacia(p)){
          return '\0';
          }
@@ -40,7 +40,7 @@ char pop(Pila* p){
          NodoPila* nodoAux = p->tope;
          p->tope = p->tope->siguiente;
 
-         char valor= *(char*)(nodoAux->dato);
+         void* valor= *(char*)(nodoAux->dato);
 
          free(nodoAux->dato);
          free(nodoAux);
@@ -48,7 +48,7 @@ char pop(Pila* p){
          return valor;
 }
 
-char peek(Pila* p){
+void* peek(Pila* p){
          if(pilaVacia(p)){
                  return '\0';
          }
@@ -56,7 +56,7 @@ char peek(Pila* p){
 }
 
 int pilaVacia(Pila* p){
-         return(p->tope==NULL);
+          return (p == NULL || p->tope == NULL);
 }
 
 void destruirPila(Pila* p){
